@@ -26,16 +26,3 @@ class Ingredient(Base):
     recipe_associations = relationship("RecipeIngredient", back_populates="ingredient")
 
 
-class Recipe(Base):
-    __tablename__ = "recipes"
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(255), index=True, nullable=False)
-    description = Column(Text, nullable=True)
-    instructions = Column(Text, nullable=False)
-
-    ingredient_associations = relationship(
-        "RecipeIngredient",
-        back_populates="recipe",
-        cascade="all, delete-orphan"
-    )
